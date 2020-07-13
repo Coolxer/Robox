@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class axisConfig : MonoBehaviour
+public class AxisConfig : MonoBehaviour
 {
-    public GameObject axis;
+    public ValueController position;
+
+    public ValueController speed;
+
+    public Button autoButton;
 
     public Vector3 vector;
-    public float min;
-    public float max;
-    private float speed = 50.0f;
-
-    private float lastSliderValue;
 
     private bool auto = false;
 
@@ -20,75 +19,53 @@ public class axisConfig : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        sliderController.minValue = min;
-        sliderController.maxValue = max;
-
-         sliderController.onValueChanged.AddListener(
-             delegate { onSlideRotate();}
-        );
-
-        speedController.minValue = 0.0f;
-        speedController.value = this.speed;
-        speedController.maxValue = 100.0f;
-
-        speedController.onValueChanged.AddListener(
-             delegate { setSpeed();}
-        );
-
-        speedText.text = this.speed.ToString();
-       
+    {       
         autoButton.onClick.AddListener(setAutoRotate);
-
-        lastSliderValue = 0;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!auto) return;
-
-        float newValue = lastSliderValue + (this.speed * Time.deltaTime * direction);
-        float delta = newValue - lastSliderValue;
-        transform.Rotate(vector * delta);
-
-        sliderController.value = newValue;
-
-        if(newValue >= max && direction == 1) direction = -1;
-        else if(newValue <= min && direction == -1) direction = 1;
-
-        posText.text = newValue.ToString();
-
-        lastSliderValue = newValue;
-    }
-
-    public void onSlideRotate()
-    {
-        float currentValue = sliderController.value;
-
-        float delta = currentValue - lastSliderValue;
-
-        transform.Rotate (vector * delta);
-
-        posText.text = currentValue.ToString();
-
-        lastSliderValue = currentValue;
+        if(auto) autoRotate();
+        else if (position.getDelta() != 0)
+        {
+            transform.Rotate(vector * position.getDelta());
+            position.resetDelta();
+        }
     }
 
     public void setAutoRotate()
     {
-        string text = auto ? "AUTO" : "STOP";
+        auto = !auto;
+
+        string text;
+        Color color;
+
+        if(!auto)
+        {
+            text = "Auto";
+            color = Color.green;
+        }
+        else
+        {
+            text = "Stop";
+            color = Color.red;
+        }
 
         autoButton.GetComponentInChildren<Text>().text = text;
-
-        auto = !auto;
+        autoButton.GetComponent<Image>().color = color;
         
-        lastSliderValue = lastSliderValue == 0 ? 0.01f : lastSliderValue;
     }
 
-    public void setSpeed()
+    private void autoRotate()
     {
-        this.speed = speedController.value;
-        speedText.text = this.speed.ToString();
+        float newValue = position.getLastValue() + (speed.getValue() * Time.deltaTime * direction); // 5 is speed
+        float delta = newValue - position.getLastValue();
+        transform.Rotate(vector * delta);
+
+        position.setValue(newValue);
+
+        if(newValue >= position.getMax() && direction == 1) direction = -1;
+        else if(newValue <= position.getMin() && direction == -1) direction = 1;
     }
 }
