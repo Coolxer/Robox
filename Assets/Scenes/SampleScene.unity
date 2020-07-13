@@ -606,7 +606,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Auto
+  m_Text: AUTO
 --- !u!222 &74474772
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1280,7 +1280,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 409357423}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 200
   m_WholeNumbers: 0
   m_Value: 50
   m_OnValueChanged:
@@ -1682,7 +1682,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 268346060}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 200
   m_WholeNumbers: 0
   m_Value: 50
   m_OnValueChanged:
@@ -3004,7 +3004,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Auto
+  m_Text: AUTO
 --- !u!222 &448375406
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3512,7 +3512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3531,7 +3531,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LEWO
+  m_Text: ---
 --- !u!222 &560616895
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4079,7 +4079,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Auto
+  m_Text: AUTO
 --- !u!222 &648045696
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4418,6 +4418,7 @@ MonoBehaviour:
   position: {fileID: 1225325158}
   speed: {fileID: 912083598}
   autoButton: {fileID: 1916880191}
+  autoText: {fileID: 2105999501}
   vector: {x: 0, y: 1, z: 0}
 --- !u!1 &672073161
 GameObject:
@@ -4488,7 +4489,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Auto
+  m_Text: AUTO
 --- !u!222 &672073164
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4988,7 +4989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5007,7 +5008,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LEWO
+  m_Text: ---
 --- !u!222 &711289673
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5261,7 +5262,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1892210757}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 200
   m_WholeNumbers: 0
   m_Value: 50
   m_OnValueChanged:
@@ -6183,7 +6184,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1592997813}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 200
   m_WholeNumbers: 0
   m_Value: 50
   m_OnValueChanged:
@@ -6487,7 +6488,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Auto
+  m_Text: AUTO
 --- !u!222 &1062947142
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7721,6 +7722,7 @@ MonoBehaviour:
   position: {fileID: 650904773}
   speed: {fileID: 8236850}
   autoButton: {fileID: 390383920}
+  autoText: {fileID: 1897206684}
   vector: {x: 0, y: 0, z: 1}
 --- !u!1 &1262790092
 GameObject:
@@ -8074,7 +8076,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 926845148}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 200
   m_WholeNumbers: 0
   m_Value: 50
   m_OnValueChanged:
@@ -8415,7 +8417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -8434,7 +8436,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LEWO
+  m_Text: ---
 --- !u!222 &1331093667
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9660,6 +9662,7 @@ MonoBehaviour:
   position: {fileID: 1187798193}
   speed: {fileID: 1829957665}
   autoButton: {fileID: 1217480624}
+  autoText: {fileID: 711289672}
   vector: {x: 0, y: 0, z: 1}
 --- !u!1 &1592997812
 GameObject:
@@ -10358,7 +10361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -10377,7 +10380,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LEWO
+  m_Text: ---
 --- !u!222 &1727395355
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10806,7 +10809,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Auto
+  m_Text: AUTO
 --- !u!222 &1798822228
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10991,6 +10994,7 @@ MonoBehaviour:
   position: {fileID: 13985435}
   speed: {fileID: 757147225}
   autoButton: {fileID: 1714599180}
+  autoText: {fileID: 1727395354}
   vector: {x: 0, y: 0, z: 1}
 --- !u!1 &1829957663
 GameObject:
@@ -11344,7 +11348,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1396204117}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 200
   m_WholeNumbers: 0
   m_Value: 50
   m_OnValueChanged:
@@ -11400,7 +11404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -11419,7 +11423,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LEWO
+  m_Text: ---
 --- !u!222 &1897206685
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11819,6 +11823,7 @@ MonoBehaviour:
   position: {fileID: 1319339998}
   speed: {fileID: 1776071311}
   autoButton: {fileID: 2065735061}
+  autoText: {fileID: 560616894}
   vector: {x: 1, y: 0, z: 0}
 --- !u!1 &1970326481
 GameObject:
@@ -11869,6 +11874,7 @@ MonoBehaviour:
   position: {fileID: 654355918}
   speed: {fileID: 11544754}
   autoButton: {fileID: 547768285}
+  autoText: {fileID: 1331093666}
   vector: {x: 1, y: 0, z: 0}
 --- !u!1 &1981401927
 GameObject:
@@ -12698,7 +12704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12717,7 +12723,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LEWO
+  m_Text: ---
 --- !u!222 &2105999502
 CanvasRenderer:
   m_ObjectHideFlags: 0

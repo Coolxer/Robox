@@ -11,6 +11,8 @@ public class AxisConfig : MonoBehaviour
 
     public Button autoButton;
 
+    public Text autoText;
+
     public Vector3 vector;
 
     private bool auto = false;
@@ -43,18 +45,23 @@ public class AxisConfig : MonoBehaviour
 
         if(!auto)
         {
-            text = "Auto";
+            text = "AUTO";
             color = Color.green;
+
+            autoText.color = new Color(0.25f, 0.25f, 0.25f);
+            autoText.text = "---";
         }
         else
         {
-            text = "Stop";
+            text = "STOP";
             color = Color.red;
+
+            autoText.color = direction == -1 ? Color.red : Color.green;
+            autoText.text = direction == -1 ? "LEFT" : "RIGHT";
         }
 
         autoButton.GetComponentInChildren<Text>().text = text;
         autoButton.GetComponent<Image>().color = color;
-        
     }
 
     private void autoRotate()
@@ -65,7 +72,24 @@ public class AxisConfig : MonoBehaviour
 
         position.setValue(newValue);
 
-        if(newValue >= position.getMax() && direction == 1) direction = -1;
-        else if(newValue <= position.getMin() && direction == -1) direction = 1;
+        if(newValue >= position.getMax() || newValue <= position.getMin()) 
+            changeDirection();
+    }
+
+    private void changeDirection()
+    {
+        direction *= -1;
+
+        if(direction == -1)
+        {
+            autoText.text = "LEFT";
+            autoText.color = Color.red;
+            
+        }
+        else if (direction == 1)
+        {
+            autoText.text = "RIGHT";
+            autoText.color = Color.green;
+        }
     }
 }
