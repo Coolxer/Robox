@@ -42,5 +42,7 @@ public class CameraManager : MonoBehaviour
 
         cameras[lastCameraIndex].enabled = false;
         cameras[currentCameraIndex].enabled = true;
+
+        camButton.GetComponentInChildren<Text>().text = "CAM " + (currentCameraIndex + 1).ToString();
     }
 }
