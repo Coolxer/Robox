@@ -66,14 +66,14 @@ public class AxisConfig : MonoBehaviour
 
     private void autoRotate()
     {
+         if(position.getValue() >= position.getMax() || position.getValue() <= position.getMin()) 
+            changeDirection();
+
         float newValue = position.getLastValue() + (speed.getValue() * Time.deltaTime * direction); // 5 is speed
         float delta = newValue - position.getLastValue();
         transform.Rotate(vector * delta);
 
         position.setValue(newValue);
-
-        if(newValue >= position.getMax() || newValue <= position.getMin()) 
-            changeDirection();
     }
 
     private void changeDirection()
