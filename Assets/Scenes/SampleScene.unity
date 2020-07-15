@@ -3242,6 +3242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 532518533}
+  - component: {fileID: 532518534}
   m_Layer: 0
   m_Name: manager
   m_TagString: Untagged
@@ -3263,6 +3264,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &532518534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532518532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951c715bf6aee3c46b4314e6e4420706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartBtn: {fileID: 1025578272}
+  showHideBtn: {fileID: 696636678}
+  exitBtn: {fileID: 1295199931}
+  leftPanel: {fileID: 425788068}
+  rightPanel: {fileID: 1908857682}
 --- !u!1 &540544528
 GameObject:
   m_ObjectHideFlags: 0
@@ -5510,7 +5528,7 @@ MonoBehaviour:
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -5518,7 +5536,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BUTTON
+  m_Text: RESET POS
 --- !u!222 &854714144
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6420,7 +6438,7 @@ GameObject:
   - component: {fileID: 1025578273}
   - component: {fileID: 1025578272}
   m_Layer: 5
-  m_Name: reset
+  m_Name: restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8461,7 +8479,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: RESET
+  m_Text: RESTART
 --- !u!222 &1320569489
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10348,7 +10366,7 @@ GameObject:
   - component: {fileID: 1677265204}
   - component: {fileID: 1677265203}
   m_Layer: 5
-  m_Name: auto
+  m_Name: reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
