@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    public GameObject workspace;
     public GameObject target;
     public float zoomspeed = 1000.0f;
     public float rotatespeed = 10.0f;
 
-    private bool dragging = false;
+    private DraggingManager draggingManager;
 
     void Start()
     {
-         
+        draggingManager = workspace.GetComponent<DraggingManager>();
     }
 
     // Update is called once per frame
@@ -25,15 +26,9 @@ public class CameraMovement : MonoBehaviour
     private void rotate()
     {
         if(!GetComponent<Camera>().enabled) return;
-
-        if(Input.GetMouseButtonDown(0))
-            dragging = true; 
             
-        if(Input.GetMouseButtonUp(0))
-            dragging = false;
-            
-        if (dragging)
-            transform.RotateAround(target.transform.position, target.transform.up, Input.GetAxis( "Mouse X" ) * rotatespeed); 
+        if (draggingManager.isDragging())
+            transform.RotateAround(target.transform.position, target.transform.up, Input.GetAxis("Mouse X") * rotatespeed); 
     }
 
     private void zoom()
