@@ -38,8 +38,8 @@ public class CameraMovement : MonoBehaviour
         // nadsluchiwanie zdarzenia rotacji kamery wokol punktu
         rotate();
 
-        // ndasluchiwanie zdarzenia przyblizania/oddalania kamery
-        //zoom(); 
+        // nadsluchiwanie zdarzenia przyblizania/oddalania kamery
+        zoom(); 
     }
 
     // funkcja obslugujaca zdarzenie rotacji kamery wokol punktu
@@ -62,11 +62,14 @@ public class CameraMovement : MonoBehaviour
         // obliczenie dystancy pomiedzy kamera a punktem (centralnym punktem robota)
         float distance = Vector3.Distance(transform.position, target.transform.position);
 
-        // utworzenie zmiennej pomocniczej, ktora dla scroll'owania w gore (do przodu) ustawia sie na 1, a w dol (do tylu) na -1
-        float direction = Input.mouseScrollDelta.y > 0 ? 1 : -1;
 
-        // zmiana pozycji kamery w czasie, uwzgledniajac kierunek, predkosc
-        transform.position += direction * (transform.forward * zoomspeed * Time.deltaTime);
-
+        // jesli scrolluje w gore to direction = 1
+        if(Input.mouseScrollDelta.y > 0)
+            // zmiana pozycji kamery w czasie, uwzgledniajac kierunek, predkosc
+            transform.position += transform.forward * zoomspeed * Time.deltaTime;
+        // jesli scrolluje w dol to direction = -1
+        else if(Input.mouseScrollDelta.y < 0)
+            // zmiana pozycji kamery w czasie, uwzgledniajac kierunek, predkosc
+            transform.position -= transform.forward * zoomspeed * Time.deltaTime;
     }
 }

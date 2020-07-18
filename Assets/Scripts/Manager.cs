@@ -11,6 +11,9 @@ public class Manager : MonoBehaviour
     // obiekt typu Button sluzacy do restartu aplikacji
     public Button restartBtn;
 
+    // obiekt typu Button sluzacy do wlaczenia/wylaczenia trybu inverse kinematics
+    public Button inverseBtn;
+
     // obiekt typu Button sluzacy pokazywania i chowania menu bocznych
     public Button showHideBtn;
 
@@ -26,11 +29,14 @@ public class Manager : MonoBehaviour
     // zmienna okreslajaca czy boczne menu sa aktualnie widoczne
     private bool visibleSides = true;
 
+    private bool inverseEnabled = false;
+
     // funkcja jest uruchamiana przed pierwszym update'm
     void Start()
     {
         // dodanie funkcji obslugujacych klikniecia poszegolnych przyciskow
         restartBtn.onClick.AddListener(restart);
+        inverseBtn.onClick.AddListener(inverse);
         showHideBtn.onClick.AddListener(showHide);
         exitBtn.onClick.AddListener(exit);
     }
@@ -40,6 +46,13 @@ public class Manager : MonoBehaviour
     {
         // zaladowanie aktualnej sceny od nowa
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    
+    // funkcja obslugujaca klikniecie przycisku inverse
+    private void inverse() 
+    {
+        inverseEnabled = !inverseEnabled;
     }
 
     // funkcja obslugujaca klikniecie przycisku showHide
