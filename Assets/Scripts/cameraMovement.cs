@@ -39,7 +39,7 @@ public class CameraMovement : MonoBehaviour
         rotate();
 
         // ndasluchiwanie zdarzenia przyblizania/oddalania kamery
-        zoom(); 
+        //zoom(); 
     }
 
     // funkcja obslugujaca zdarzenie rotacji kamery wokol punktu

@@ -21,7 +21,7 @@ using UnityEngine;
 public class Kinematics : MonoBehaviour
 {
     // tablica wezlow
-    public Joint[] joints;
+    public Axis[] joints;
 
     // obiekt bedacy celem (kontrolerem robota)
     public GameObject target;
@@ -70,7 +70,7 @@ public class Kinematics : MonoBehaviour
         for (int i = 1; i < joints.Length; i++)
         {
             // obrot wzledem osi
-            rotation *= Quaternion.AngleAxis(joints[i - 1].getAngle(), joints[i - 1].Axis);
+            rotation *= Quaternion.AngleAxis(joints[i - 1].getAngle(), joints[i - 1].vector);
             
             // aktualizacja punktu
             prevPoint += rotation * joints[i].startOffset;
