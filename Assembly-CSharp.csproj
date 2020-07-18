@@ -40,6 +40,8 @@
      <Compile Include="Assets\Scripts\CameraManager.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\DraggingManager.cs" />
+     <Compile Include="Assets\Scripts\Joint.cs" />
+     <Compile Include="Assets\Scripts\Kinematics.cs" />
      <Compile Include="Assets\Scripts\Manager.cs" />
      <Compile Include="Assets\Scripts\ValueController.cs" />
     <Reference Include="UnityEngine">
