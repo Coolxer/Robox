@@ -53,47 +53,34 @@ public class Axis : MonoBehaviour
         else if (position.delta != 0)
         {
             // dokonaj rotacji osi wedle zadanego wektora ruchu
-            transform.Rotate(vector * position.delta);
+            transform.localEulerAngles = vector * position.getValue();
             
             // zresetowanie wartosci po dokonanym ruchu
             position.delta = 0;   
-
-            Debug.Log(transform.localEulerAngles);
         }
     }
 
     // funkcja uruchamiana po kliknieciu przycisku auto/stop
     public void setAutoRotate()
     {
-        // ponizsze dwa warunki obsluguja 2 szczegolne przypadki,
-        // kiedy slider jest na pozycji min lub max
-        // wtedy nalezy konkretnie zdefiniowac wartosc i kierunek
-        // aby uniknac bledu
-
-        // sprawdzenie czy slider znajduje sie na minimum
-        if(position.getValue() == position.getMin())
-        {
-            // ustawienie kierunku na 1
-            direction = 1;
-
-            // rotacja o nieznaczaca wartosc przy rozpoczeciu
-           // transform.Rotate(vector * position.setValue(0.0001f));
-        }
-         // sprawdzenie czy slider znajduje sie na maksimum
-        else if (position.getValue() == position.getMax())
-        {
-            // ustawienie kierunku na -1
-            direction = -1;
-
-            // rotacja o nieznaczaca wartosc przy rozpoczeciu
-            //transform.Rotate(vector * position.setValue(-0.0001f));
-        }
-
         // negacja wartosci bitowej
         auto = !auto;
 
         string text;
         Color color;
+
+        // ponizsze dwa warunki obsluguja 2 szczegolne przypadki,
+        // kiedy slider jest na pozycji min lub max
+        // wtedy nalezy konkretnie zdefiniowac  kierunek
+
+        // sprawdzenie czy slider znajduje sie na minimum
+        if(position.getValue() == position.getMin())
+            // ustawienie kierunku na 1
+            direction = 1;
+         // sprawdzenie czy slider znajduje sie na maksimum
+        else if (position.getValue() == position.getMax())
+            // ustawienie kierunku na -1
+            direction = -1;
 
         // jesli test osi zostal deaktywowany powyzej to nalezy wyswietlic przycisk AUTO
         if(!auto)
@@ -143,10 +130,9 @@ public class Axis : MonoBehaviour
             changeDirection();
 
         // obliczenie nowej wartosci dla osi, korzystajac z poprzedniej wartosci, kierunku
-        // zmiana wartosci zalezy od uplywu czasu i zadanej predkosci
         float newValue = position.getValue() + (speed.getValue() * Time.deltaTime * direction);
 
-        //transform.Rotate(vector * position.setValue(newValue));
+        moveTo(newValue);
     }
 
     // funkcja zmieniajaca kierunek automatycznego ruchu
@@ -197,7 +183,10 @@ public class Axis : MonoBehaviour
 
     public void moveTo(float pos)
     {
-        // zmiana wartosci suwaka pozycji
-        //transform.Rotate(vector * position.setValue(pos));
+        // zmiana wartosci suwaka
+        position.setValue(pos);
+
+        // rotacja osi
+        transform.localEulerAngles = vector * pos;
     }
 }

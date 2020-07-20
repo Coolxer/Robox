@@ -71,6 +71,8 @@ public class ValueController : MonoBehaviour
         text.text = slider.value.ToString();
 
         lastValue = slider.value;
+
+        Debug.Log(slider.value);
     }
 
     // funkcja uruchamiana podczas zmiany wartosci suwaka, a takze wywolywana z "zewnatrz"

@@ -62,8 +62,6 @@ public class CameraMovement : MonoBehaviour
         // obliczenie dystansu pomiedzy kamera a punktem (centralnym punktem robota)
         float distance = Vector3.Distance(transform.position, target.transform.position);
 
-        Debug.Log(distance);
-
         // przyblizanie
         if(Input.mouseScrollDelta.y > 0 && distance >= 300.0f)
             // zmiana pozycji kamery w czasie, uwzgledniajac kierunek, predkosc
