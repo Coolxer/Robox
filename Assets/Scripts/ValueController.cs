@@ -65,14 +65,14 @@ public class ValueController : MonoBehaviour
 
     private void onSlide()
     {
+        // obliczenie delty
         delta = slider.value - lastValue;
         
         // zmiana wartosci pola tekstowego
         text.text = slider.value.ToString();
 
+        // aktualizacja ostatniej wartosci
         lastValue = slider.value;
-
-        Debug.Log(slider.value);
     }
 
     // funkcja uruchamiana podczas zmiany wartosci suwaka, a takze wywolywana z "zewnatrz"
@@ -84,6 +84,7 @@ public class ValueController : MonoBehaviour
         // zmiana wartosci pola tekstowego
         text.text = value.ToString();
 
+        // obliczenie delty
         delta = value - lastValue;
 
         // zapisanie aktualnej wartosci jako poprzednia

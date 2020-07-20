@@ -25,6 +25,9 @@ public class Axis : MonoBehaviour
     // wektor definiujacy poczatkowe odsuniecie wezla od celu
     public Vector3 startOffset;
 
+    // kontroler audio
+    private AudioSource audios;
+
     // zmienna okreslajaca czy test osi jest uruchomiony czy nie
     private bool auto = false;
 
@@ -35,6 +38,8 @@ public class Axis : MonoBehaviour
     {
         // obliczenie odsuniecia osi od celu
         startOffset = transform.localPosition;
+
+        audios = GetComponent<AudioSource>();
     }
 
     // funkcja jest uruchamiana przed pierwszm update'm
@@ -56,7 +61,7 @@ public class Axis : MonoBehaviour
             transform.localEulerAngles = vector * position.getValue();
             
             // zresetowanie wartosci po dokonanym ruchu
-            position.delta = 0;   
+            position.delta = 0; 
         }
     }
 
@@ -96,6 +101,8 @@ public class Axis : MonoBehaviour
 
             // zmiana watosci pola tekstowego kierunku na ---
             autoText.text = "---";
+
+            audios.Stop();
         }
         else // jesli test osi zostal aktywowany powyzej to nalezy wyswietlic przycisk STOP
         {
@@ -113,6 +120,7 @@ public class Axis : MonoBehaviour
             // jesli kierunek to -1 to tekst to LEFT inaczej RIGHT
             autoText.text = direction == -1 ? "LEFT" : "RIGHT";
 
+            audios.Play();
         }
 
         // ustawienie tekstu przycisku
@@ -132,7 +140,11 @@ public class Axis : MonoBehaviour
         // obliczenie nowej wartosci dla osi, korzystajac z poprzedniej wartosci, kierunku
         float newValue = position.getValue() + (speed.getValue() * Time.deltaTime * direction);
 
+        // rotacja do nowej pozycji
         moveTo(newValue);
+
+        audios.pitch = Mathf.InverseLerp(0, 3, speed.getValue() / 200);
+        audios.volume = Mathf.Abs(1 - audios.pitch);
     }
 
     // funkcja zmieniajaca kierunek automatycznego ruchu
