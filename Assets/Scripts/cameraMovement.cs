@@ -59,16 +59,17 @@ public class CameraMovement : MonoBehaviour
     // funkcja obslugujaca zdarzenie przyblizania/oddalania kamery
     private void zoom()
     {
-        // obliczenie dystancy pomiedzy kamera a punktem (centralnym punktem robota)
+        // obliczenie dystansu pomiedzy kamera a punktem (centralnym punktem robota)
         float distance = Vector3.Distance(transform.position, target.transform.position);
 
+        Debug.Log(distance);
 
-        // jesli scrolluje w gore to direction = 1
-        if(Input.mouseScrollDelta.y > 0)
+        // przyblizanie
+        if(Input.mouseScrollDelta.y > 0 && distance >= 300.0f)
             // zmiana pozycji kamery w czasie, uwzgledniajac kierunek, predkosc
             transform.position += transform.forward * zoomspeed * Time.deltaTime;
-        // jesli scrolluje w dol to direction = -1
-        else if(Input.mouseScrollDelta.y < 0)
+        // oddalanie
+        else if(Input.mouseScrollDelta.y < 0 && distance <= 1300.0f)
             // zmiana pozycji kamery w czasie, uwzgledniajac kierunek, predkosc
             transform.position -= transform.forward * zoomspeed * Time.deltaTime;
     }

@@ -42,7 +42,6 @@ public class Axis : MonoBehaviour
     {   
         // dodanie funkcji obslugujacej zdarzenie klikniecia przycisku Auto/stop
         autoButton.onClick.AddListener(setAutoRotate);
-
     }
 
     // funkcja uruchamiana jest raz na klatke
@@ -51,12 +50,15 @@ public class Axis : MonoBehaviour
         // jesli test osi jest uruchomiony
         if(auto) autoRotate();
         // jesli wartosc suwaka ulegla zmianie
-        else if (position.getDelta() != 0)
+        else if (position.delta != 0)
         {
-            // dokonaj rotacji osi wedle zadanego wektora ruchu o delte
-            transform.Rotate(vector * position.getDelta());
-            // zresetuj delte
-            position.resetDelta();
+            // dokonaj rotacji osi wedle zadanego wektora ruchu
+            transform.Rotate(vector * position.delta);
+            
+            // zresetowanie wartosci po dokonanym ruchu
+            position.delta = 0;   
+
+            Debug.Log(transform.localEulerAngles);
         }
     }
 
@@ -74,11 +76,8 @@ public class Axis : MonoBehaviour
             // ustawienie kierunku na 1
             direction = 1;
 
-            // rotacja o nieznaczaca wartosc
-            transform.Rotate(vector * 0.0001f);
-
-            // aktualizacja wartosci slidera, w celu unikniecia bledu
-            position.setValue(position.getMin() + 0.0001f);
+            // rotacja o nieznaczaca wartosc przy rozpoczeciu
+           // transform.Rotate(vector * position.setValue(0.0001f));
         }
          // sprawdzenie czy slider znajduje sie na maksimum
         else if (position.getValue() == position.getMax())
@@ -86,11 +85,8 @@ public class Axis : MonoBehaviour
             // ustawienie kierunku na -1
             direction = -1;
 
-             // rotacja o nieznaczaca wartosc
-            transform.Rotate(vector * (-0.0001f));
-
-            // aktualizacja wartosci slidera, w celu unikniecia bledu
-            position.setValue(position.getMax() - 0.0001f);
+            // rotacja o nieznaczaca wartosc przy rozpoczeciu
+            //transform.Rotate(vector * position.setValue(-0.0001f));
         }
 
         // negacja wartosci bitowej
@@ -148,16 +144,9 @@ public class Axis : MonoBehaviour
 
         // obliczenie nowej wartosci dla osi, korzystajac z poprzedniej wartosci, kierunku
         // zmiana wartosci zalezy od uplywu czasu i zadanej predkosci
-        float newValue = position.getLastValue() + (speed.getValue() * Time.deltaTime * direction);
+        float newValue = position.getValue() + (speed.getValue() * Time.deltaTime * direction);
 
-        // obliczenie delty
-        float delta = newValue - position.getLastValue();
-
-        // transformacja osi wedle zadanego wektora o delte
-        transform.Rotate(vector * delta);
-
-        // zmiana wartosci suwaka pozycji
-        position.setValue(newValue);
+        //transform.Rotate(vector * position.setValue(newValue));
     }
 
     // funkcja zmieniajaca kierunek automatycznego ruchu
@@ -204,5 +193,11 @@ public class Axis : MonoBehaviour
             transform.localEulerAngles = new Vector3(0, angle, 0);
         // jesli wektor obrotu to [0, 0, 1] (os Z)
         else transform.localEulerAngles = new Vector3(0, 0, angle);
+    }
+
+    public void moveTo(float pos)
+    {
+        // zmiana wartosci suwaka pozycji
+        //transform.Rotate(vector * position.setValue(pos));
     }
 }

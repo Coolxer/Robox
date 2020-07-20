@@ -30,14 +30,19 @@ public class TargetMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // jesli obiekt nie jest aktywny nie bedzie podjeta zadna akcja
+        // obiekt jest aktywny tylko w trybie "Inverse Kinematics"
+        if(!gameObject.activeInHierarchy) return;
+
         if (Input.GetKey(KeyCode.A))
         {
+            Debug.Log("pressed");
             transform.LookAt(center, vb);
             if(angleH <= 165.0f)
             {
                 float value = speed * Time.deltaTime;
                 transform.RotateAround(center.position, vb, value);
-                blueAxis.transform.RotateAround(center.position, vb, value);
+                //blueAxis.transform.RotateAround(center.position, vb, value);
                 //vg = Quaternion.AngleAxis(value, vb).eulerAngles;
                 angleH += value;
             }
@@ -49,7 +54,7 @@ public class TargetMovement : MonoBehaviour
             {
                 float value = speed * Time.deltaTime;
                 transform.RotateAround(center.position, -vb, value);
-                blueAxis.transform.RotateAround(center.position, -vb, value);
+                //blueAxis.transform.RotateAround(center.position, -vb, value);
                 //vg = Quaternion.AngleAxis(-value, vb).eulerAngles;
                 angleH -= value;
             }
@@ -62,7 +67,7 @@ public class TargetMovement : MonoBehaviour
             {
                 float value = speed * Time.deltaTime;
                 transform.RotateAround(center.position, vg, value);
-                greenAxis.transform.RotateAround(center.position, vg, value);
+                //greenAxis.transform.RotateAround(center.position, vg, value);
                 //vb = Quaternion.AngleAxis(value, vg).eulerAngles;
                 angleV += value;
             }
@@ -74,7 +79,7 @@ public class TargetMovement : MonoBehaviour
             {
                 float value = speed * Time.deltaTime;
                 transform.RotateAround(center.position, -vg, value);
-                greenAxis.transform.RotateAround(center.position, -vg, value);
+                //greenAxis.transform.RotateAround(center.position, -vg, value);
                 //vb = Quaternion.AngleAxis(-value, vg).eulerAngles;
                 angleV -= value;
             }

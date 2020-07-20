@@ -14,11 +14,10 @@ public class ValueController : MonoBehaviour
     // obiekt typu Text to pole, w ktorym wyswietlana jest aktualna wartosci suwaka
     private Text text;
 
-    // ostatnia wartosc ustawiona jest na malo znaczaca 0.0001f, tak aby mozliwy byl prawidlowy start
-    private float lastValue = 0.0001f;
+    // ostatnio odczytana wartosc 
+    private float lastValue;
 
-    // roznica pomiedzy aktualna i poprzednia wartosci
-    private float delta = 0;
+    public float delta;
 
     // funkcja uruchamiana podczas ladowania skryptu
     void Awake()
@@ -33,9 +32,11 @@ public class ValueController : MonoBehaviour
     // funkcja jest uruchamiana przed pierwszym update'm
     void Start()
     {
+        lastValue = slider.value;
+
         // dodanie funkcji obslugujacej zmiane wartosci suwaka
         slider.onValueChanged.AddListener(
-            delegate { setValue(slider.value);}
+            delegate { onSlide();}
         );
     }
 
@@ -45,22 +46,9 @@ public class ValueController : MonoBehaviour
         return slider.value;
     }
 
-    // funkcja zwracajaca poprzednia wartosc
     public float getLastValue()
     {
         return lastValue;
-    }
-
-    // funkcja zwracajaca roznice miedzy aktualna i poprzednia wartoscia
-    public float getDelta()
-    {
-        return delta;
-    }
-
-    // funkcja resetujaca delte
-    public void resetDelta()
-    {
-        delta = 0;
     }
 
     // funkcja zwracajaca minimalna wartosc suwaka
@@ -75,6 +63,16 @@ public class ValueController : MonoBehaviour
         return slider.maxValue;
     }
 
+    private void onSlide()
+    {
+        delta = slider.value - lastValue;
+        
+        // zmiana wartosci pola tekstowego
+        text.text = slider.value.ToString();
+
+        lastValue = slider.value;
+    }
+
     // funkcja uruchamiana podczas zmiany wartosci suwaka, a takze wywolywana z "zewnatrz"
     public void setValue(float value)
     {
@@ -84,11 +82,10 @@ public class ValueController : MonoBehaviour
         // zmiana wartosci pola tekstowego
         text.text = value.ToString();
 
-        // obliczenie delty
         delta = value - lastValue;
 
         // zapisanie aktualnej wartosci jako poprzednia
-        lastValue = value;
+        lastValue = slider.value;
     }
 }
 

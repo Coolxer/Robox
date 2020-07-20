@@ -25,11 +25,16 @@ public class Manager : MonoBehaviour
 
     // obiekt reprezentujacy prawe menu
     public GameObject rightPanel;
+
+    public TargetMovement targetMovement;
+
+    public Axis[] axes = new Axis[6];
     
     // zmienna okreslajaca czy boczne menu sa aktualnie widoczne
     private bool visibleSides = true;
 
     private bool inverseEnabled = false;
+
 
     // funkcja jest uruchamiana przed pierwszym update'm
     void Start()
@@ -45,7 +50,7 @@ public class Manager : MonoBehaviour
     private void restart() 
     {
         // zaladowanie aktualnej sceny od nowa
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Main");
     }
 
     
@@ -53,6 +58,37 @@ public class Manager : MonoBehaviour
     private void inverse() 
     {
         inverseEnabled = !inverseEnabled;
+
+        if(inverseEnabled)
+        {
+            // zmiana tekstu przycisku
+            inverseBtn.GetComponentInChildren<Text>().text = "EXHIBITION";
+
+            // deaktywacja paneli bocznych
+            leftPanel.SetActive(false);
+            rightPanel.SetActive(false);
+            
+            targetMovement.blueAxis.SetActive(true);
+            targetMovement.greenAxis.SetActive(true);
+            targetMovement.gameObject.SetActive(true);
+
+            resetPositions();
+        }
+        else
+        {
+            // zmiana tekstu przycisku
+            inverseBtn.GetComponentInChildren<Text>().text = "IK MOVE";
+
+            // aktywacja paneli bocznych
+            leftPanel.SetActive(true);
+            rightPanel.SetActive(true);
+
+            targetMovement.blueAxis.SetActive(false);
+            targetMovement.greenAxis.SetActive(false);
+            targetMovement.gameObject.SetActive(false);
+
+            resetPositions();
+        }
     }
 
     // funkcja obslugujaca klikniecie przycisku showHide
@@ -75,8 +111,11 @@ public class Manager : MonoBehaviour
     private void exit()
     {
         SceneManager.LoadScene("Credits");
+    }
 
-        // zamkniecie aplikacji
-        //Application.Quit();
+    private void resetPositions()
+    {
+        for(int i = 0; i < axes.Length; i++)
+            axes[i].moveTo(0);
     }
 }
