@@ -74,7 +74,9 @@ public class Manager : MonoBehaviour
     // funkcja obslugujaca klikniecie przycisku exit
     private void exit()
     {
+        SceneManager.LoadScene("Credits");
+
         // zamkniecie aplikacji
-        Application.Quit();
+        //Application.Quit();
     }
 }
