@@ -67,7 +67,7 @@ public class CameraMovement : MonoBehaviour
             // zmiana pozycji kamery w czasie, uwzgledniajac kierunek, predkosc
             transform.position += transform.forward * zoomspeed * Time.deltaTime;
         // oddalanie
-        else if(Input.mouseScrollDelta.y < 0 && distance <= 1300.0f)
+        else if(Input.mouseScrollDelta.y < 0 && distance <= 1100.0f)
             // zmiana pozycji kamery w czasie, uwzgledniajac kierunek, predkosc
             transform.position -= transform.forward * zoomspeed * Time.deltaTime;
     }

@@ -45,7 +45,6 @@
      <Compile Include="Assets\Scripts\Manager.cs" />
      <Compile Include="Assets\Scripts\TargetMovement.cs" />
      <Compile Include="Assets\Scripts\ValueController.cs" />
-     <Compile Include="Assets\Scripts\WireAxis.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/programs/unity/2019.4.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

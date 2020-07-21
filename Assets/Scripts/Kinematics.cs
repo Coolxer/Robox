@@ -24,7 +24,7 @@ public class Kinematics : MonoBehaviour
     public Axis[] joints;
 
     // obiekt bedacy celem (kontrolerem robota)
-    public GameObject target;
+    public TargetMovement target;
 
     // zmienna definiujaca tempo w jakim wartosci katow daza do optymalnego rozwiazania
     // im wieksza wartosc tym szybciej, ale tez wieksze ryzyko bledow i tzw. glitch'y

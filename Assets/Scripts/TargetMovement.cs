@@ -24,7 +24,7 @@ public class TargetMovement : MonoBehaviour
     // kontroler pozycji dla osi Z
     public ValueController zPos;
 
-    // Update is called once per frame
+    // funkcja jest uruchamiana raz na klatke
     void Update()
     {
         // jesli obiekt nie jest aktywny nie bedzie podjeta zadna akcja
@@ -64,5 +64,25 @@ public class TargetMovement : MonoBehaviour
             // zresetowanie wartosci po dokonanym ruchu
             zPos.delta = 0; 
         }
+    }
+
+    // funkcja resetuje pozycje osi i obiektu
+    public void reset()
+    {
+        // reset pozycji obiektu do poczatkowej
+        transform.position = new Vector3(-85, 588, 1000);
+
+        // ustawienie wartosci na suwakach i polach tekstowych
+        xPos.setValue(227);
+        yPos.setValue(540);
+        zPos.setValue(1000);
+
+        // wylaczenie update'u
+        xPos.delta = yPos.delta = zPos.delta = 0;
+
+        // reset pozycji osi
+        xAxis.transform.position = new Vector3(227, 588, 1000);
+        yAxis.transform.position = new Vector3(-85, 540, 1000);
+        zAxis.transform.position = new Vector3(-85, 588, 1000);
     }
 }

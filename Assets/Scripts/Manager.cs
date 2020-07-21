@@ -11,6 +11,9 @@ public class Manager : MonoBehaviour
     // obiekt typu Button sluzacy do restartu aplikacji
     public Button restartBtn;
 
+    // obiekt typu Button sluzacy do resetowania pozycji wszystkich osi
+    public Button resetBtn;
+
     // obiekt typu Button sluzacy do wlaczenia/wylaczenia trybu inverse kinematics
     public Button inverseBtn;
 
@@ -27,7 +30,7 @@ public class Manager : MonoBehaviour
     public Axis[] axes = new Axis[6];
 
     // obiekt obslugujacy logike kinematyki odwrotnej
-    public GameObject ik;
+    public Kinematics ik;
 
     // panel sterujacy kinematyki odwrotnej
     public GameObject ikPanel;
@@ -43,6 +46,7 @@ public class Manager : MonoBehaviour
     {
         // dodanie funkcji obslugujacych klikniecia poszegolnych przyciskow
         restartBtn.onClick.AddListener(restart);
+        resetBtn.onClick.AddListener(resetPositions);
         inverseBtn.onClick.AddListener(inverse);
         showHideBtn.onClick.AddListener(showHide);
         exitBtn.onClick.AddListener(exit);
@@ -72,8 +76,8 @@ public class Manager : MonoBehaviour
             ikPanel.SetActive(true);
             
             // aktywacja kinematyki odwrotnej
-            ik.SetActive(true);
-
+            ik.gameObject.SetActive(true);
+            
             resetPositions();
         }
         else
@@ -88,7 +92,7 @@ public class Manager : MonoBehaviour
             ikPanel.SetActive(false);
 
             // deaktywacja kinematyki odwrotnej
-            ik.SetActive(false);
+            ik.gameObject.SetActive(false);
 
             resetPositions();
         }
@@ -115,9 +119,12 @@ public class Manager : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
 
+    // funkcja resetuje wszystkie osi
     private void resetPositions()
     {
+        ik.target.reset();
+        
         for(int i = 0; i < axes.Length; i++)
-            axes[i].moveTo(0);
+            axes[i].moveTo(0f);
     }
 }
