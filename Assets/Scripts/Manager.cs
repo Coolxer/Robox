@@ -20,21 +20,23 @@ public class Manager : MonoBehaviour
     // obiekt typu Button sluzacy do wylaczenia aplikacji
     public Button exitBtn;
 
-    // obiekt reprezentujacy lewe menu
-    public GameObject leftPanel;
+    // obiekt reprezentujacy lewe i prawe menu
+    public GameObject content;
 
-    // obiekt reprezentujacy prawe menu
-    public GameObject rightPanel;
-
-    public TargetMovement targetMovement;
-
+    // tablica osi sluzaca m.in do resetu pozycji wszystkich osi
     public Axis[] axes = new Axis[6];
+
+    // obiekt obslugujacy logike kinematyki odwrotnej
+    public GameObject ik;
+
+    // panel sterujacy kinematyki odwrotnej
+    public GameObject ikPanel;
     
     // zmienna okreslajaca czy boczne menu sa aktualnie widoczne
     private bool visibleSides = true;
 
+    // zmienna okreslajaca czy kinematyka odwrotna jest aktywna
     private bool inverseEnabled = false;
-
 
     // funkcja jest uruchamiana przed pierwszym update'm
     void Start()
@@ -53,7 +55,6 @@ public class Manager : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
-    
     // funkcja obslugujaca klikniecie przycisku inverse
     private void inverse() 
     {
@@ -65,12 +66,13 @@ public class Manager : MonoBehaviour
             inverseBtn.GetComponentInChildren<Text>().text = "EXHIBITION";
 
             // deaktywacja paneli bocznych
-            leftPanel.SetActive(false);
-            rightPanel.SetActive(false);
+            content.SetActive(false);
+
+            // aktywacja panelu kinematyki odwrotnej
+            ikPanel.SetActive(true);
             
-            targetMovement.blueAxis.SetActive(true);
-            targetMovement.greenAxis.SetActive(true);
-            targetMovement.gameObject.SetActive(true);
+            // aktywacja kinematyki odwrotnej
+            ik.SetActive(true);
 
             resetPositions();
         }
@@ -80,12 +82,13 @@ public class Manager : MonoBehaviour
             inverseBtn.GetComponentInChildren<Text>().text = "IK MOVE";
 
             // aktywacja paneli bocznych
-            leftPanel.SetActive(true);
-            rightPanel.SetActive(true);
+            content.SetActive(true);
 
-            targetMovement.blueAxis.SetActive(false);
-            targetMovement.greenAxis.SetActive(false);
-            targetMovement.gameObject.SetActive(false);
+            // deaktywacja panelu kinematyki odwrotnej
+            ikPanel.SetActive(false);
+
+            // deaktywacja kinematyki odwrotnej
+            ik.SetActive(false);
 
             resetPositions();
         }
@@ -98,8 +101,7 @@ public class Manager : MonoBehaviour
         visibleSides = !visibleSides;
 
         // aktywacja badz deaktywacja paneli bocznych w zaleznosci od wartosci zmiennej visibleSides
-        leftPanel.SetActive(visibleSides);
-        rightPanel.SetActive(visibleSides);
+        content.SetActive(visibleSides);
 
         // zmiana tekstu przycisku w zaleznosci od wartosci zmiennej
         // jesli visibleSides jest true (panele boczne sa widoczne) to tekst to HIDE (mozliwosc schowania paneli)

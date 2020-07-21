@@ -2,30 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// klasa reprezentujaca ruch obiektu po wyznaczonych sciezkach w trybie "Inverse Kinematics"
 public class TargetMovement : MonoBehaviour
 {
-    public Transform center;
 
-    public Vector3 vector;
+    // os X
+    public GameObject xAxis;
 
-    public float speed = 20.0f;
+    // os Y
+    public GameObject yAxis;
 
-    private float angleH = 0;
-    private float angleV = 0;
+    // os Z
+    public GameObject zAxis;
 
-    public GameObject blueAxis;
+    // kontroler pozycji dla osi X
+    public ValueController xPos;
 
-    public GameObject greenAxis;
+    // kontroler pozycji dla osi Y
+    public ValueController yPos;
 
-    private Vector3 vb;
-    private Vector3 vg;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        vb = Vector3.up;
-        vg = Vector3.forward;
-    }
+    // kontroler pozycji dla osi Z
+    public ValueController zPos;
 
     // Update is called once per frame
     void Update()
@@ -34,55 +31,38 @@ public class TargetMovement : MonoBehaviour
         // obiekt jest aktywny tylko w trybie "Inverse Kinematics"
         if(!gameObject.activeInHierarchy) return;
 
-        if (Input.GetKey(KeyCode.A))
+        // jesli zostala zmieniona wartosc na sliderze osi X
+        if (xPos.delta != 0)
         {
-            Debug.Log("pressed");
-            transform.LookAt(center, vb);
-            if(angleH <= 165.0f)
-            {
-                float value = speed * Time.deltaTime;
-                transform.RotateAround(center.position, vb, value);
-                //blueAxis.transform.RotateAround(center.position, vb, value);
-                //vg = Quaternion.AngleAxis(value, vb).eulerAngles;
-                angleH += value;
-            }
-        }
-        else if(Input.GetKey(KeyCode.D))
-        {
-            transform.LookAt(center, vb);
-            if(angleH >= -165.0f)
-            {
-                float value = speed * Time.deltaTime;
-                transform.RotateAround(center.position, -vb, value);
-                //blueAxis.transform.RotateAround(center.position, -vb, value);
-                //vg = Quaternion.AngleAxis(-value, vb).eulerAngles;
-                angleH -= value;
-            }
-        }
+            // zmiana pozycji dla obiektu i osi Y i Z
+            transform.position = new Vector3(xPos.getValue(), transform.position.y, transform.position.z);
+            yAxis.transform.position = new Vector3(xPos.getValue(), yAxis.transform.position.y, yAxis.transform.position.z);
+            zAxis.transform.position = new Vector3(xPos.getValue(), zAxis.transform.position.y, zAxis.transform.position.z);
 
-        else if (Input.GetKey(KeyCode.W))
-        {
-            transform.LookAt(center, vg);
-            if(angleV <= 55.0f)
-            {
-                float value = speed * Time.deltaTime;
-                transform.RotateAround(center.position, vg, value);
-                //greenAxis.transform.RotateAround(center.position, vg, value);
-                //vb = Quaternion.AngleAxis(value, vg).eulerAngles;
-                angleV += value;
-            }
+            // zresetowanie wartosci po dokonanym ruchu
+            xPos.delta = 0; 
         }
-        else if(Input.GetKey(KeyCode.S))
+        // jesli zostala zmieniona wartosc na sliderze osi Y
+        else if (yPos.delta != 0)
         {
-            transform.LookAt(center, vg);
-            if(angleV >= -80.0f)
-            {
-                float value = speed * Time.deltaTime;
-                transform.RotateAround(center.position, -vg, value);
-                //greenAxis.transform.RotateAround(center.position, -vg, value);
-                //vb = Quaternion.AngleAxis(-value, vg).eulerAngles;
-                angleV -= value;
-            }
+            // zmiana pozycji dla obiektu i osi X i Z
+            transform.position = new Vector3(transform.position.x, yPos.getValue(), transform.position.z);
+            xAxis.transform.position = new Vector3(xAxis.transform.position.x, yPos.getValue(), xAxis.transform.position.z);
+            zAxis.transform.position = new Vector3(zAxis.transform.position.x, yPos.getValue(), zAxis.transform.position.z);
+
+            // zresetowanie wartosci po dokonanym ruchu
+            yPos.delta = 0; 
+        }
+        // jesli zostala zmieniona wartosc na sliderze osi Z
+        else if (zPos.delta != 0)
+        {
+            // zmiana pozycji dla obiektu i osi X i Y
+            transform.position = new Vector3(transform.position.x, transform.position.y, zPos.getValue());
+            xAxis.transform.position = new Vector3(xAxis.transform.position.x, xAxis.transform.position.y, zPos.getValue());
+            yAxis.transform.position = new Vector3(yAxis.transform.position.x, yAxis.transform.position.y, zPos.getValue());
+
+            // zresetowanie wartosci po dokonanym ruchu
+            zPos.delta = 0; 
         }
     }
 }
