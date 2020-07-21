@@ -101,6 +101,10 @@ public class Manager : MonoBehaviour
     // funkcja obslugujaca klikniecie przycisku showHide
     private void showHide() 
     {
+        // jesli kinematyka odwrotna jest wlaczona to button jest nieaktywny
+        if(ik.gameObject.activeInHierarchy)
+            return;
+
         // negacja wartosci binarnej
         visibleSides = !visibleSides;
 
@@ -122,7 +126,8 @@ public class Manager : MonoBehaviour
     // funkcja resetuje wszystkie osi
     private void resetPositions()
     {
-        ik.target.reset();
+        if(ik.gameObject.activeInHierarchy)
+            ik.target.reset();
         
         for(int i = 0; i < axes.Length; i++)
             axes[i].moveTo(0f);
