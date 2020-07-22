@@ -85,11 +85,11 @@ public class Manager : MonoBehaviour
             // zmiana tekstu przycisku
             inverseBtn.GetComponentInChildren<Text>().text = "IK MOVE";
 
-            // aktywacja paneli bocznych
-            content.SetActive(true);
-
             // deaktywacja panelu kinematyki odwrotnej
             ikPanel.SetActive(false);
+
+            // aktywacja paneli bocznych
+            content.SetActive(true);
 
             // deaktywacja kinematyki odwrotnej
             ik.gameObject.SetActive(false);

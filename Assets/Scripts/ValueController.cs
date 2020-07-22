@@ -81,6 +81,9 @@ public class ValueController : MonoBehaviour
         // ustawienie wartosci suwaka na podana wartosc
         slider.value = value;
 
+        onSlide();
+
+        /*
         // zmiana wartosci pola tekstowego
         text.text = value.ToString();
 
@@ -89,6 +92,7 @@ public class ValueController : MonoBehaviour
 
         // zapisanie aktualnej wartosci jako poprzednia
         lastValue = slider.value;
+        */
     }
 }
 
